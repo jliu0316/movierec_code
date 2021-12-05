@@ -8,7 +8,7 @@ from sklearn.metrics.pairwise import linear_kernel
 def weighted_rating(x, m="", C=""):
     v = x['vote_count']
     R = x['vote_average']
-    # Calculation based on the IMDB formula
+    # calculation based on the IMDB formula
     return (v/(v+m) * R) + (m/(m+v) * C)
 
 def simple_recommender():
@@ -21,7 +21,7 @@ def simple_recommender():
     #add weighted score to dataframe
     filtered_movies['score'] = filtered_movies.apply(weighted_rating, args= (m, C), axis=1)
 
-    # Sort and print the top 10 recommended movies
+    # sort and print the top 10 recommended movies
     filtered_movies = filtered_movies.sort_values('score', ascending=False)
     return filtered_movies[['title', 'vote_count', 'vote_average', 'score']].head(10)
 
