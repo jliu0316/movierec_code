@@ -8,7 +8,7 @@ from sklearn.metrics.pairwise import linear_kernel
 def weighted_rating(x, m="", C=""):
     v = x['vote_count']
     R = x['vote_average']
-    # calculation based on the IMDB formula
+    # calculation 
     return (v/(v+m) * R) + (m/(m+v) * C)
 
 def simple_recommender():
@@ -26,7 +26,7 @@ def simple_recommender():
     return filtered_movies[['title', 'vote_count', 'vote_average', 'score']].head(10)
 
 def content_based_recommender(movie_title):
-    data = pd.read_csv('./movie_data/movies_metadata.csv', low_memory=False)
+    data = pd.read_csv('movies_metadata.csv', low_memory=False)
     tfidf = TfidfVectorizer(stop_words='english')
 
     #clean text data
